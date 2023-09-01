@@ -9,13 +9,13 @@ use serde::Serialize;
 pub fn write_json_mean_var(data: Vec<Vec<MeanVar>>) -> Result<(), Box<dyn Error>> {
     let json = serde_json::to_string(&data)?;
 
-    let mut file = File::create("model_output_files/mean_variance_stubbing1de.json")?;
+    let mut file = File::create("model_output_files/fixed_mean_variance_stubbing.json")?;
     file.write_all(json.as_bytes())?;
     
     Ok(())
 }
 
-pub  fn write_csv<T: Display>(data: Vec<Vec<T>>) -> Result<String, Box<dyn Error>> {
+pub fn write_csv<T: Display>(data: Vec<Vec<T>>) -> Result<String, Box<dyn Error>> {
     let mut wtr = Writer::from_writer(Vec::new());
 
     for row in data {

@@ -6,9 +6,10 @@ use rand_distr::Binomial;
 pub fn degrees_pois_geom(partitions: &Vec<usize>, group_sizes: &Vec<usize>, period: &str, rng: &mut ThreadRng) -> Vec<usize> {
     // import parameters to sample
     let dist_params: DistributionParameters  = match period {
-        "1" => read_params_json("model_input_files/multinomial_params1.json"),
-        "2" => read_params_json("model_input_files/multinomial_params2.json"),
-        _ => read_params_json("model_input_files/multinomial_params1.json")
+        "1" => read_params_json("model_input_files/fixed_multinomial_params1.json"),
+        _ => read_params_json("model_input_files/fixed_multinomial_params2.json")
+        // "1" => read_params_json("model_input_files/multinomial_params1.json"),
+        // _ => read_params_json("model_input_files/multinomial_params2.json")
     };
     let mut degrees: Vec<usize> = Vec::new();
     // assign degrees for each individual

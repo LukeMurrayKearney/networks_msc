@@ -27,11 +27,11 @@ pub fn test_error_of_stubbing(ns: Vec<usize>) -> Result<(), Box<dyn Error>> {
         let mut ascend_tmp: Vec<(usize,usize)> = Vec::new();
         for _ in 0..30 {
             let (_, tmp) = NetworkStructure::new_multinomial_rand(n.clone(), &partitions, period,true);
-            descend_tmp.push(tmp)
+            descend_tmp.push((tmp.0,tmp.1))
         }
         for _ in 0..30 {
             let (_, tmp) = NetworkStructure::new_multinomial_rand(n.clone(), &partitions, period,false);
-            ascend_tmp.push(tmp)
+            ascend_tmp.push((tmp.0,tmp.1))
         }
         let mut proportions: Vec<Vec<f64>> = Vec::new();
         proportions.push(descend_tmp.iter().map(|&(x,y)| (y as f64)/(x as f64)).collect::<Vec<f64>>());

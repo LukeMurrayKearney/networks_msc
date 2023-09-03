@@ -9,7 +9,7 @@ use serde::Serialize;
 pub fn write_json_mean_var(data: Vec<Vec<MeanVar>>) -> Result<(), Box<dyn Error>> {
     let json = serde_json::to_string(&data)?;
 
-    let mut file = File::create("model_output_files/fixed_mean_variance_stubbing.json")?;
+    let mut file = File::create("model_output_files/time_complexity_mean_var.json")?;
     file.write_all(json.as_bytes())?;
     
     Ok(())

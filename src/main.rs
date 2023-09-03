@@ -10,7 +10,7 @@ fn  main() -> Result<(), Box<dyn Error>> {
     // let mut result: Vec<Vec<Vec<f64>>> = Vec::new();
     // let mut sum: Vec<Vec<f64>> = vec![vec![0.0; partitions.len()]; partitions.len()];
     // for i in 0..1 {
-    //     let (_, tmp) = NetworkStructure::new_multinomial_rand(n, &partitions, "2", true);
+    //     let (_, tmp) = NetworkStructure::new_multinomial_rand(n, &partitions, "1", true);
     //     result.push(tmp.2);
     // }
     // for x in result.iter() {
@@ -22,14 +22,14 @@ fn  main() -> Result<(), Box<dyn Error>> {
     // }
     // // println!("{:?}", sum);
     // let csv: String = write_csv(sum)?;
-    // write_to_csv_file("model_output_files/unconnected_stub_breakdown2.csv", &csv)?;
+    // write_to_csv_file("model_output_files/unconnected_stub_breakdown1.csv", &csv)?;
     // Ok(())
-    // // let (_, tmp) = NetworkStructure::new_multinomial_rand(n, &partitions, "1", true);
-    // // println!("{:?}", tmp.2);
-    let mut ns: Vec<usize> = (1..100).collect();
-    ns.append(&mut (1..100).map(|x| x*100).collect());
-    ns.append(&mut (1..=100).map(|x| x*10_000).collect());
+    // let (_, tmp) = NetworkStructure::new_multinomial_rand(n, &partitions, "1", true);
+    // println!("{:?}", tmp.2);
+    let mut ns: Vec<usize> = (1..100).map(|x| x*100).collect();
+    ns.append(&mut (1..=20).map(|x| x*10_000).collect());
+    // ns.append(&mut (1..=100).map(|x| x*10_000).collect());
     println!("{:?}", ns);
-    test_error_of_stubbing(ns)?;
+    test_time_complexity(ns)?;
     Ok(())
 }

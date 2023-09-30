@@ -2,11 +2,17 @@ use networks_msc::run_scenarios::*;
 use networks_msc::network_structure::*;
 use networks_msc::output_files::*;
 use std::error::Error;
+use std::time::Instant;
 
 fn  main() -> Result<(), Box<dyn Error>> {
-    // let n: usize = 100_000;
-    // // test_run_model(n, "1");
-    // let partitions: Vec<usize> = vec![58*n/1000, 145*n/1000, 212*n/1000, 364*n/1000, 497*n/1000, 623*n/1000, 759*n/1000, 866*n/1000, n];
+
+    let n: usize = 100_000;
+    let partitions: Vec<usize> = vec![58*n/1000, 145*n/1000, 212*n/1000, 364*n/1000, 497*n/1000, 623*n/1000, 759*n/1000, 866*n/1000, n];
+    let period = "2";
+    let (network,_) = NetworkStructure::new_multinomial_rand(n, &partitions, period, true);
+    network.to_json("networks/network_model2.json")?;
+
+    Ok(())
     // let mut result: Vec<Vec<Vec<f64>>> = Vec::new();
     // let mut sum: Vec<Vec<f64>> = vec![vec![0.0; partitions.len()]; partitions.len()];
     // for i in 0..1 {
@@ -24,12 +30,12 @@ fn  main() -> Result<(), Box<dyn Error>> {
     // let csv: String = write_csv(sum)?;
     // write_to_csv_file("model_output_files/unconnected_stub_breakdown1.csv", &csv)?;
     // Ok(())
-    // let (_, tmp) = NetworkStructure::new_multinomial_rand(n, &partitions, "1", true);
-    // println!("{:?}", tmp.2);
-    let mut ns: Vec<usize> = (1..100).map(|x| x*100).collect();
-    ns.append(&mut (1..=20).map(|x| x*10_000).collect());
-    // ns.append(&mut (1..=100).map(|x| x*10_000).collect());
-    println!("{:?}", ns);
-    test_time_complexity(ns)?;
-    Ok(())
+
+
+    // let mut ns: Vec<usize> = (1..100).map(|x| x*100).collect();
+    // ns.append(&mut (1..=20).map(|x| x*10_000).collect());
+    // // ns.append(&mut (1..=100).map(|x| x*10_000).collect());
+    // println!("{:?}", ns);
+    // test_time_complexity(ns)?;
+    // Ok(())
 }

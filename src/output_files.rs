@@ -5,6 +5,16 @@ use csv::Writer;
 use std::fs::File;
 use std::io::Write;
 use serde::Serialize;
+use crate::network_structure::Link;
+
+pub fn write_json_network(data: Vec<Vec<Link>>) -> Result<(), Box<dyn Error>> {
+    let json = serde_json::to_string(&data)?;
+
+    let mut file = File::create("networks/network_model1.json")?;
+    file.write_all(json.as_bytes())?;
+    
+    Ok(())
+}
 
 pub fn write_json_mean_var(data: Vec<Vec<MeanVar>>) -> Result<(), Box<dyn Error>> {
     let json = serde_json::to_string(&data)?;
